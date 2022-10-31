@@ -414,7 +414,8 @@ func (f *field[T]) AssertIsLessOrEqual(v frontend.Variable, bound frontend.Varia
 func (f *field[T]) Println(a ...frontend.Variable) {
 	els := f.varsToElements(a)
 	for i := range els {
-		f.api.Println(els[i].Limbs...)
+		reducedEl := f.reduce(els[i])
+		f.api.Println(reducedEl.Limbs...)
 	}
 }
 
