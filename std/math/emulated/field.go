@@ -274,10 +274,6 @@ func (f *field[T]) Select(b frontend.Variable, i1 frontend.Variable, i2 frontend
 		f.AssertIsBoolean(vv)
 		b = vv.Limbs[0]
 	}
-	fmt.Println("i1 overflow", els[0].overflow)
-	fmt.Println("i1 num limbs", len(els[0].Limbs))
-	fmt.Println("i2 overflow", els[1].overflow)
-	fmt.Println("i2 num limbs", len(els[1].Limbs))
 	if els[0].overflow == els[1].overflow && len(els[0].Limbs) == len(els[1].Limbs) {
 		return f._select(b, els[0], els[1])
 	}

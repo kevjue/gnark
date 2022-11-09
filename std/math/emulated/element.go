@@ -539,10 +539,8 @@ func (f *field[T]) sub(a, b Element[T], nextOverflow uint) Element[T] {
 // assumes a overflow == b overflow
 func (f *field[T]) _select(selector frontend.Variable, a, b Element[T]) Element[T] {
 	e := NewElement[T](nil)
+	e.Limbs = make([]frontend.Variable, len(a.Limbs))
 	e.overflow = a.overflow
-	fmt.Println("_select: num a limbs is", len(a.Limbs))
-	fmt.Println("_select: num b limbs is", len(b.Limbs))
-	fmt.Println("_select: num e limbs is", len(e.Limbs))
 	for i := range a.Limbs {
 		e.Limbs[i] = f.api.Select(selector, a.Limbs[i], b.Limbs[i])
 	}
