@@ -381,8 +381,12 @@ func (f *field[T]) mul(a, b Element[T], nextOverflow uint) Element[T] {
 	}
 }
 
-// reduce reduces a modulo modulus and assigns e to the reduced value.
 func (f *field[T]) Reduce(a Element[T]) Element[T] {
+	return f.reduce(a)
+}
+
+// reduce reduces a modulo modulus and assigns e to the reduced value.
+func (f *field[T]) reduce(a Element[T]) Element[T] {
 	if a.overflow == 0 {
 		// fast path - already reduced, omit reduction.
 		return a
